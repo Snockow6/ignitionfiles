@@ -5,6 +5,9 @@
   "passwd": {
     "users": [
       {
+        "groups": [
+          "wheel"
+        ],
         "name": "nathan",
         "sshAuthorizedKeys": [
           "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCw787L+CRwrzVyiKzuFG534zu32yCR+odo3SY35bsSR9IHTT6lCc91eeb2ORDRomFCFUu6Gu6mxLOqkKcXXkxoNL8v/wbVeGtLx+jd97tNgu7KHIfB9qmTxGI3qXvNYOb58BgrIdEB7CErHvXVCd563Gnx927TzhO/cdVSMb6OOXQcxjfFzj1re4MRqMs0gLtXWhH5zVdOJmT825ZwjrppyR0bQMi993c+ypZ7bRE2EOGe28pAoWR0pQYccORxCUcMpWXpzhhIH9uZ5WhMcenjwqBT23zFQMCMPz+c0ogDHGCK3Egnrw8OHBynSdX62XFJ9tWkrfqqBNWs4imqqHbocWlKu+6S006p4jh/dCvolE9psZiXLG+Niw+mnN3s4AyiiMl9xdG4cHJvokQzjrHArPjy6LhLST2f18OV+0YPNikIFOv9O0XYWkyFRBirgAmT5d2UBRA71lUMhy+ljq2rCIURnmBdIYh0QSJmNcrQWkR52nAz//rWkcKvkK5xHvM= nathan@nathan-lp"
@@ -12,10 +15,21 @@
       }
     ]
   },
+  "storage": {
+    "files": [
+      {
+        "path": "/etc/hostname",
+        "contents": {
+          "source": "data:,dellserver"
+        },
+        "mode": 420
+      }
+    ]
+  },
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Run a hello world web service\nAfter=network-online.target\nWants=network-online.target\n[Service]\nExecStart=/bin/podman run --pull=always   --name=hello --net=host -p 8080:8080 quay.io/cverna/hello\nExecStop=/bin/podman rm -f hello\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Run a hello world web service\nAfter=network-online.target\nWants=network-online.target\n[Service]\nExecStart=/bin/podman run --pull=always --name=hello --net=host -p 8080:8080 quay.io/cverna/hello\nExecStop=/bin/podman rm -f hello\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "hello.service"
       }
