@@ -11,5 +11,14 @@
         ]
       }
     ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "contents": "[Unit]\nDescription=Run a hello world web service\nAfter=network-online.target\nWants=network-online.target\n[Service]\nExecStart=/bin/podman run --pull=always   --name=hello --net=host -p 8080:8080 quay.io/cverna/hello\nExecStop=/bin/podman rm -f hello\n[Install]\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "hello.service"
+      }
+    ]
   }
 }
