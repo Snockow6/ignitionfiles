@@ -21,16 +21,6 @@
       {
         "enabled": true,
         "name": "podman.socket"
-      },
-      {
-        "contents": "[Unit]\nDescription=Create Portainer Data\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/podman volume create Portainer_Data\n\n[Install]\nWantedBy=multi-user.target\n",
-        "enabled": true,
-        "name": "create-portianer-data.service"
-      },
-      {
-        "contents": "[Unit]\nDescription=Run Portainer\nWants=multi-user.target\nAfter=multi-user.target\n\n[Service]\nTimeoutStartSec=0\nExecStartPre=-/bin/podman kill Heimdall\nExecStartPre=-/bin/podman rm Heimdall\nExecStartPre=/bin/podman pull lscr.io/linuxserver/heimdall\nExecStart=/usr/bin/podman run -d \\\n  --name Portainer \\\n  -p 8000:8000 \\\n  -p 9443:9433 \\\n  -v /var/run/podman/podman.sock:/var/run/docker.sock \\\n  -v Portainer_Data:/data \\\n  --restart=always \\\n  docker.io/portainer/portainer-ce:2.11.0\nExecStop=/bin/podman rm -f Portainer\n\n[Install]\nWantedBy=multi-user.target\n",
-        "enabled": true,
-        "name": "container-Portainer.service"
       }
     ]
   }
