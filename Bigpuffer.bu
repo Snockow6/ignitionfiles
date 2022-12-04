@@ -1,22 +1,6 @@
 variant: fcos
 version: 1.4.0
-storage:
-  disks:
-  -
-    device: /dev/by-id/coreos-boot-disk
-    wipe_table: false
-    partitions:
-    - number: 4
-      label: root
-      size_mib: 8192
-      resize: true
-    - size_mib: 0
-      label: var
-    filesystems:
-      - path: /var
-        device: /dev/disk/by-partlabel/var
-        format: btrfs
-        with_mount_unit: true
+passwd:
   users:
     - name: nathan
       groups:
